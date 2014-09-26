@@ -1,0 +1,19 @@
+<div class="layout_instagram block<?php echo $this->class; ?>">
+	<a class="author" target="_blank" href="<?php echo $this->authorLink; ?>">
+    	<img src="<?php echo $this->authorPicture; ?>" alt="<?php echo $this->authorName; ?>" title="<?php echo $this->authorName; ?>" />
+        <span class="author"><?php echo $this->authorName; ?></span>
+    </a>
+	<abbr class="time" title="<?php echo $this->datetime; ?>"><?php echo $this->date; ?></abbr>
+    <?php if($this->teaser): ?>
+    <p class="teaser"><?php echo $this->teaser; ?></p>
+    <?php endif; ?>
+    <?php if($this->hasImage): ?>
+    <div class="image_container">
+		<img src="<?php echo $this->imgUrl; ?>" alt="<?php echo $this->imgAlt; ?>" title="<?php echo $this->imgAlt; ?>">
+	</div>
+    <?php endif; ?>
+    <p class="more"><?php echo $this->more; ?></p>
+    <?php if($this->actions): ?>
+    <ul class="actions"><?php echo $this->actions; ?></ul>
+    <?php endif; ?>
+</div>

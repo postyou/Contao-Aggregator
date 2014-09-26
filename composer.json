@@ -1,0 +1,34 @@
+{
+	"name":"terhuerne/aggregator",
+	"description":"With Aggregator, you can aggregate your hottest news right out of your Profiles at Facebook, Twitter and Instagram.",
+	"keywords":["aggregator","facebook","twitter","instagram"],
+	"type":"contao-module",
+	"homepage":"http://www.terhuerne.org",
+	"license":"MIT",
+	"authors":[
+		{
+			"name":"Johannes Terhürne",
+			"homepage":"http://www.terhuerne.org",
+			"role":"Developer"
+		}
+	],
+	"support":{
+		"issues":"https://github.com/terhuerne/Contao-Aggregator/issues",
+		"source":"https://github.com/terhuerne/Contao-Aggregator/"
+	},
+	"require":{
+		"php":">=5.3",
+		"contao/core":">=3.3.x,<4",
+		"contao-community-alliance/composer-installer":"*"
+	},
+	"autoload":{
+		"classmap":[""]
+	},
+	"extra":{
+		"contao":{
+			"sources":{
+				"":"system/modules/aggregator"
+			}
+		}
+	}
+}
