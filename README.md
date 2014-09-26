@@ -5,7 +5,7 @@ Aggregator is an extension für Contao 3.3.x. With Aggregator, you can aggregate
 
 One annotation before we start
 ----------------------
-This tool will give you access to the APIs of Facebook, Twitter & Instagram. Please consider to onlyfetch data you actually uploaded yourself on these plattforms. Otherwise you won't comply with the plattform policies.
+This tool will give you access to the APIs of Facebook, Twitter & Instagram. Please consider to fetch only data you actually own and you have uploaded yourselves on these plattforms. You are responsible to comply at any time with the plattform policies of the respective companies.
 
 Installation
 ----------------------
