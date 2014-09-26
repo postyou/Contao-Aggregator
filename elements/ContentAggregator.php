@@ -173,7 +173,7 @@ class ContentAggregator extends \ContentElement
 	protected function generateActions($actionArray){
 		$html = '';
 		foreach($actionArray as $action){
-			$html .= '<li><a href="'.$action['link'].'" onclick="'.addslashes("window.open(this.href,'','width=640,height=380,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no');return false").'" target="_blank">'.$action['title'].'</a></li>';
+			$html .= '<li><a href="'.$action['link'].'" onclick="'."window.open(this.href,'','width=640,height=380,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no');return false".'" target="_blank">'.$action['title'].'</a></li>';
 		}
 		return $html;
 	}
