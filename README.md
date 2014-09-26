@@ -38,8 +38,8 @@ Follow the follwing instructions to receive these credentials:
 
 Support
 ----------------------
-This extension is developed as an open source extension. Therefore there is no official support. If you have any technical questions, please create a ticket here at GitHub.
+This extension is developed as an open source extension. Therefore there is no official support. If you have any technical questions or problems, please create a ticket here at GitHub.
 
 Legal-Notes
 ----------------------
-With downloading this package, you accept the terms and conditions of the MIT Licence. Also, I do not own any of the used Trademarks in the context of this extension. This extension is developed indipendent from these organisations and do not represent official products by these.
+With downloading this package, you accept the terms and conditions of the MIT Licence. Also, I do not own any of the used Trademarks in the context of this extension. This extension is developed independent from these organisations and do not represent official products by these.
