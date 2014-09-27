@@ -42,4 +42,4 @@ This extension is developed as an open source extension. Therefore there is no o
 
 Legal-Notes
 ----------------------
-With downloading this package, you accept the terms and conditions of the MIT Licence. Also, I do not own any of the used Trademarks in the context of this extension. This extension is developed independent from these organisations and do not represent official products by these.
+With downloading this package, you accept the terms and conditions of the MIT Licence. Also, I do not own any of the used Trademarks in the context of this extension. This extension is developed independent from these organisations and therefore do not represent official products by these.
