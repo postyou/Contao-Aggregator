@@ -62,7 +62,7 @@ class AggregatorEngine extends \Backend{
 		global $GLOBALS;
 		if (isset($GLOBALS['TL_CONFIG']['aggregator_facebook_app_id']) && $GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'] != '' && isset($GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']) && $GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret'] != '')
 		{	
-			$data = $this->fetchUrl('https://graph.facebook.com/v2.1/'.$str.'?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
+			$data = $this->fetchUrl('https://graph.facebook.com/v2.2/'.$str.'?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
 			if ($data['error']['code'] == 803)
 			{
 				$this->log($GLOBALS['TL_LANG']['ERR']['aliasDoesNotExist'], 'AggregatorEngine getFacebookAlias()',TL_ERROR);
@@ -83,7 +83,7 @@ class AggregatorEngine extends \Backend{
 		$str = ltrim($str, '@');
 		if (isset($GLOBALS['TL_CONFIG']['aggregator_facebook_app_id']) && $GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'] != '' && isset($GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']) && $GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret'] != '')
 		{	
-			$data = $this->fetchUrl('https://graph.facebook.com/v2.1/'.$str.'?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
+			$data = $this->fetchUrl('https://graph.facebook.com/v2.2/'.$str.'?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
 			if ($data['error']['code'] == 803)
 			{
 				throw new \Exception($GLOBALS['TL_LANG']['ERR']['aliasDoesNotExist']);
@@ -311,7 +311,7 @@ class AggregatorEngine extends \Backend{
 							
 							if (isset($GLOBALS['TL_CONFIG']['aggregator_facebook_app_id']) && $GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'] != '' && isset($GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']) && $GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret'] != '')
 							{
-								$data = $this->fetchUrl('https://graph.facebook.com/v2.1/'.urlencode($allActiveJobs->facebookUser).'/posts/?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
+								$data = $this->fetchUrl('https://graph.facebook.com/v2.2/'.urlencode($allActiveJobs->facebookUser).'/posts/?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
 								
 								if ($data['error']['code'] == 4)
 								{
@@ -428,7 +428,7 @@ class AggregatorEngine extends \Backend{
 							if($this->checkForBadwords($badwords, $item['message']))
 							{
 								$cacheLibrary[$count]['author']['name'] = $item['from']['name'];
-								$cacheLibrary[$count]['author']['picture'] = 'https://graph.facebook.com/v2.1/'.$item['from']['id'].'/picture?type=square';
+								$cacheLibrary[$count]['author']['picture'] = 'https://graph.facebook.com/v2.2/'.$item['from']['id'].'/picture?type=square';
 								$cacheLibrary[$count]['author']['url'] = 'https://www.facebook.com/'.$item['from']['id'];
 								if(strlen($item['message']) > 160){
 									$cacheLibrary[$count]['item']['message'] = substr($item['message'], 0, 160).'...';
@@ -441,7 +441,7 @@ class AggregatorEngine extends \Backend{
 									parse_str($parts['query'], $query);
 									$cacheLibrary[$count]['item']['picture'] = $query['url'];
 								}else{
-									$ch = curl_init('https://graph.facebook.com/v2.1/'.$item['object_id'].'/picture?type=normal&access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
+									$ch = curl_init('https://graph.facebook.com/v2.2/'.$item['object_id'].'/picture?type=normal&access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
 									curl_exec($ch);
 									$response = curl_getinfo($ch);
 									$cacheLibrary[$count]['item']['picture'] = $response['redirect_url'];
