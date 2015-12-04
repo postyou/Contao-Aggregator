@@ -27,9 +27,4 @@ $GLOBALS['BE_MOD']['content']['aggregator'] = array(
  /**
   * Register Cronjob
   */
-$GLOBALS['TL_CRON'] = array
- (
-   'minutely' => array(
-      array('AggregatorEngine', 'checkForUpdates')
-   )
-);
+$GLOBALS['TL_CRON']['minutely'][] = array('AggregatorEngine', 'checkForAggregatorUpdates');

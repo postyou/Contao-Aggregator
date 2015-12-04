@@ -62,7 +62,7 @@ class AggregatorEngine extends \Backend{
 		global $GLOBALS;
 		if (isset($GLOBALS['TL_CONFIG']['aggregator_facebook_app_id']) && $GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'] != '' && isset($GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']) && $GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret'] != '')
 		{	
-			$data = $this->fetchUrl('https://graph.facebook.com/v2.2/'.$str.'?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
+			$data = $this->fetchUrl('https://graph.facebook.com/v2.5/'.$str.'?fields=username&access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
 			if ($data['error']['code'] == 803)
 			{
 				$this->log($GLOBALS['TL_LANG']['ERR']['aliasDoesNotExist'], 'AggregatorEngine getFacebookAlias()',TL_ERROR);
@@ -83,7 +83,7 @@ class AggregatorEngine extends \Backend{
 		$str = ltrim($str, '@');
 		if (isset($GLOBALS['TL_CONFIG']['aggregator_facebook_app_id']) && $GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'] != '' && isset($GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']) && $GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret'] != '')
 		{	
-			$data = $this->fetchUrl('https://graph.facebook.com/v2.2/'.$str.'?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
+			$data = $this->fetchUrl('https://graph.facebook.com/v2.5/'.$str.'?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
 			if ($data['error']['code'] == 803)
 			{
 				throw new \Exception($GLOBALS['TL_LANG']['ERR']['aliasDoesNotExist']);
@@ -144,7 +144,6 @@ class AggregatorEngine extends \Backend{
 		$ch = curl_init();
 		if ($header)
 		{
-			var_dump($header);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 		}
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -158,10 +157,9 @@ class AggregatorEngine extends \Backend{
 	{
 		$arrForms = array();
 		$objForms = $this->Database->execute("SELECT * FROM tl_aggregator ORDER BY title");
-		
-		
+
 		while ($objForms->next())
-		{
+		{   
 			if ($objForms->type == 'facebookUser' || $objForms->type == 'facebookHashtag')
 			{
 				if ($objForms->type == 'facebookUser')
@@ -252,7 +250,7 @@ class AggregatorEngine extends \Backend{
     	$this->createNewVersion('tl_aggregator', $intId);
 	}
 	
-	public function checkForUpdates()
+	public function checkForAggregatorUpdates()
 	{
 		global $GLOBALS;
 		$globalBadwordList = explode(',', str_replace(' ', '', $GLOBALS['TL_CONFIG']['aggregator_blacklist']));
@@ -311,8 +309,7 @@ class AggregatorEngine extends \Backend{
 							
 							if (isset($GLOBALS['TL_CONFIG']['aggregator_facebook_app_id']) && $GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'] != '' && isset($GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']) && $GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret'] != '')
 							{
-								$data = $this->fetchUrl('https://graph.facebook.com/v2.2/'.urlencode($allActiveJobs->facebookUser).'/posts/?access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
-								
+								$data = $this->fetchUrl('https://graph.facebook.com/v2.5/'.urlencode($allActiveJobs->facebookUser).'/posts/?fields=from,message,full_picture,link,type,created_time&access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
 								if ($data['error']['code'] == 4)
 								{
 									$facebookApi = false;
@@ -386,8 +383,7 @@ class AggregatorEngine extends \Backend{
 					case 'instagramUser':
 						if (isset($GLOBALS['TL_CONFIG']['aggregator_instagram_client_id']) && $GLOBALS['TL_CONFIG']['aggregator_instagram_client_id'] != '' && isset($GLOBALS['TL_CONFIG']['aggregator_instagram_client_secret']) && $GLOBALS['TL_CONFIG']['aggregator_instagram_client_secret'] != '')
 						{
-							$data = $this->fetchUrl('https://api.instagram.com/v1/users/'.urlencode($allActiveJobs->instagramUser).'/media/recent?client_id='.$GLOBALS['TL_CONFIG']['aggregator_instagram_client_id'].'&count=10');
-							var_dump($data);
+							$data = $this->fetchUrl('https://api.instagram.com/v1/users/'.urlencode($allActiveJobs->instagramUser).'/media/recent?client_id='.$GLOBALS['TL_CONFIG']['aggregator_instagram_client_id'].'&count=50');
 							$this->parseDataToCache($data['data'], $allActiveJobs->id, $currentBadwordList, 'instagram');
 						} else {
 							$this->log($GLOBALS['TL_LANG']['ERR']['noInstagramCredentials'], 'AggregatorEngine checkForUpdates()',TL_ERROR);
@@ -397,7 +393,7 @@ class AggregatorEngine extends \Backend{
 					case 'instagramHashtag':
 						if (isset($GLOBALS['TL_CONFIG']['aggregator_instagram_client_id']) && $GLOBALS['TL_CONFIG']['aggregator_instagram_client_id'] != '' && isset($GLOBALS['TL_CONFIG']['aggregator_instagram_client_secret']) && $GLOBALS['TL_CONFIG']['aggregator_instagram_client_secret'] != '')
 						{
-							$data = $this->fetchUrl('https://api.instagram.com/v1/tags/'.urlencode($allActiveJobs->instagramHashtag).'/media/recent?client_id='.$GLOBALS['TL_CONFIG']['aggregator_instagram_client_id'].'&count=10');
+							$data = $this->fetchUrl('https://api.instagram.com/v1/tags/'.urlencode($allActiveJobs->instagramHashtag).'/media/recent?client_id='.$GLOBALS['TL_CONFIG']['aggregator_instagram_client_id'].'&count=50');
 							$this->parseDataToCache($data['data'], $allActiveJobs->id, $currentBadwordList, 'instagram');
 						} else {
 							$this->log($GLOBALS['TL_LANG']['ERR']['noInstagramCredentials'], 'tl_aggregator checkForUpdates()',TL_ERROR);
@@ -428,25 +424,16 @@ class AggregatorEngine extends \Backend{
 							if($this->checkForBadwords($badwords, $item['message']))
 							{
 								$cacheLibrary[$count]['author']['name'] = $item['from']['name'];
-								$cacheLibrary[$count]['author']['picture'] = 'https://graph.facebook.com/v2.2/'.$item['from']['id'].'/picture?type=square';
+								$cacheLibrary[$count]['author']['picture'] = 'https://graph.facebook.com/v2.5/'.$item['from']['id'].'/picture?type=square';
 								$cacheLibrary[$count]['author']['url'] = 'https://www.facebook.com/'.$item['from']['id'];
 								if(strlen($item['message']) > 160){
 									$cacheLibrary[$count]['item']['message'] = substr($item['message'], 0, 160).'...';
 								}else{
 									$cacheLibrary[$count]['item']['message'] = $item['message'];
 								}
-								$cacheLibrary[$count]['item']['picture'] = str_replace('/s130x130', '', str_replace('_s', '_n', $item['picture']));
-								if(strpos($cacheLibrary[$count]['item']['picture'], 'safe_image.php') !== false) {
-									$parts = parse_url($cacheLibrary[$count]['item']['picture']);
-									parse_str($parts['query'], $query);
-									$cacheLibrary[$count]['item']['picture'] = $query['url'];
-								}else{
-									$ch = curl_init('https://graph.facebook.com/v2.2/'.$item['object_id'].'/picture?type=normal&access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
-									curl_exec($ch);
-									$response = curl_getinfo($ch);
-									$cacheLibrary[$count]['item']['picture'] = $response['redirect_url'];
-									curl_close($ch);
-								}
+                                $cacheLibrary[$count]['link'] = $item['link'];
+                                $cacheLibrary[$count]['item']['picture'] = $item['full_picture'];
+                                $cacheLibrary[$count]['item']['link'] = $item['link'];
 								$id = explode('_', $item['id']);
 								$cacheLibrary[$count]['item']['url'] = 'https://www.facebook.com/'.$id[0].'/posts/'.$id[1];
 								$cacheLibrary[$count]['item']['type'] = $item['type'];
@@ -456,7 +443,6 @@ class AggregatorEngine extends \Backend{
 							}
 						}
 					}
-					
 				}
 				$fp = fopen(TL_ROOT.'/system/modules/aggregator/cache/'.$fileId.'.json.cache', 'w');
 				fwrite($fp, json_encode($cacheLibrary));
