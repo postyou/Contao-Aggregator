@@ -70,21 +70,21 @@ class ContentAggregator extends \ContentElement
 		
 		$timestamps = array();
 		
-		foreach ($channelData as $channel)
-		{
-			$timestamps[] = $channel['timestamp'];
-		}
-		
-		array_multisort($timestamps, SORT_DESC, $channelData);
-		
-		$output = array();
-				
-		for($i=0; $i<$this->numPosts; $i++)
-		{
-			$output[$i] = $channelData[$i];
-		}
-				
 		if(count($channelData) > 0){
+			foreach ($channelData as $channel)
+			{
+				$timestamps[] = $channel['timestamp'];
+			}
+		
+			array_multisort($timestamps, SORT_DESC, $channelData);
+		
+			$output = array();
+				
+			for($i=0; $i<$this->numPosts; $i++)
+			{
+				$output[$i] = $channelData[$i];
+			}
+			
 			$this->Template->items = $this->parseItems($output);
 		}else{
 			$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['noAggregatorData'];
