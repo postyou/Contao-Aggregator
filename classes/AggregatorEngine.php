@@ -419,7 +419,7 @@ class AggregatorEngine extends \Backend{
 				{
 					if(strpos($item['story'], 'likes') === false && strpos($item['story'], 'updated') === false && strpos($item['story'], 'shared') === false && strpos($item['story'], 'their own') === false && strpos($item['story'], 'commented') === false)
 					{
-						if($item['type'] == 'status' || $item['type'] == 'photo' || $item['type'] == 'link')
+						if($item['type'] == 'status' || $item['type'] == 'photo' || $item['type'] == 'link' || $item['type'] == 'video')
 						{
 							if($this->checkForBadwords($badwords, $item['message']))
 							{
