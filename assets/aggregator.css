@@ -1,0 +1,20 @@
+.video-thumb {
+	display: inline-block;
+	position: relative;
+}
+
+.video-thumb:before {
+	font-family: FontAwesome;
+	content:"\f01d";
+	position: absolute;
+	left: 50%;
+	top:50%;
+	color: #fff;
+	font-size: 120px;
+	margin-top: -60px;
+	margin-left: -60px;
+}
+
+.layout_facebook {
+	margin: 2em 0;
+}
