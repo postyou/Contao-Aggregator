@@ -23,6 +23,12 @@ class ContentAggregator extends \ContentElement
 	protected $strTemplate = 'ce_aggregator';
 
 
+    public function __construct($objModule, $strColumn='main') {
+        $GLOBALS['TL_CSS']['aggregator'] = 'system/modules/aggregator/assets/css/aggregator.css';
+        $GLOBALS['TL_CSS']['fontAwesome'] = 'system/modules/aggregator/assets/fonts/font-awesome/css/font-awesome.min.css';
+        parent::__construct($objModule, $strColumn);
+    }
+
 	/**
 	 * Display a wildcard in the back end
 	 * @return string
@@ -131,7 +137,9 @@ class ContentAggregator extends \ContentElement
 			$objTemplate->imgAlt = substr($arrItem['item']['message'], 0, 24);
 			$objTemplate->more = sprintf('<a href="%s" target="_blank" title="%s">%s</a>', $arrItem['item']['url'], specialchars(sprintf($GLOBALS['TL_LANG']['MSC']['readMore'], substr($arrItem['item']['message'], 0, 12)), true), $GLOBALS['TL_LANG']['MSC']['more']);
 			$objTemplate->link = $arrItem['item']['url'];
-		
+			$objTemplate->type = $arrItem['item']['type'];
+			$objTemplate->mediaLink = $arrItem['item']['link'];
+
 			switch($arrItem['plattform']){
 				case 'facebook':
 					$actionArray = array(

@@ -3,7 +3,7 @@
 /**
  * Contao Open Source CMS
  *
- * Copyright (c) 2005-2015 Leo Feyer
+ * Copyright (c) 2005-2016 Leo Feyer
  *
  * @license LGPL-3.0+
  */
@@ -24,8 +24,8 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
-	'Aggregator\AggregatorEngine'   => 'system/modules/aggregator/classes/AggregatorEngine.php',
 	'Aggregator\TwitterAPIExchange' => 'system/modules/aggregator/classes/TwitterAPIExchange.php',
+	'Aggregator\AggregatorEngine'   => 'system/modules/aggregator/classes/AggregatorEngine.php',
 
 	// Elements
 	'Aggregator\ContentAggregator'  => 'system/modules/aggregator/elements/ContentAggregator.php',

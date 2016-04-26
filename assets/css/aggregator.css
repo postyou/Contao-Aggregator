@@ -1,0 +1,16 @@
+.video-thumb {
+	display: inline-block;
+	position: relative;
+}
+
+.video-thumb:before {
+	font-family: FontAwesome;
+	content:"\f01d";
+	position: absolute;
+	left: 50%;
+	top:50%;
+	color: #fff;
+	font-size: 2em;
+	margin-top: -0.5em;
+	margin-left: -0.5em;
+}
