@@ -28,11 +28,13 @@ $GLOBALS['BE_MOD']['content']['aggregator'] = array(
   * Register Cronjob
   */
 $GLOBALS['TL_CRON']['minutely'][] = array('AggregatorEngine', 'checkForAggregatorUpdates');
-$GLOBALS['TL_CRON']['minutely'][] = array('IntegrateContentToNewsEngine', 'insertCacheDataToNewsDB');
+$GLOBALS['TL_CRON']['hourly'][] = array('IntegrateContentToNewsEngine', 'insertCacheDataToNewsDB');
 
 
 if(TL_MODE == 'BE')
     $GLOBALS['TL_CSS'][] = '/system/modules/aggregator/assets/css/backend.css';
 
+
+$GLOBALS['FE_MOD']['news']['newslist'] = 'ModuleNewsListAggregator';
 
 $GLOBALS['TL_HOOKS']['parseArticles'][] = array('NewsListAggregatorHook', 'parseFacebookPosts');

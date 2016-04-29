@@ -25,15 +25,18 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
+	'Aggregator\AggregatorEngine'             => 'system/modules/aggregator/classes/AggregatorEngine.php',
 	'Aggregator\TwitterAPIExchange'           => 'system/modules/aggregator/classes/TwitterAPIExchange.php',
 	'aggregator\IntegrateContentToNewsEngine' => 'system/modules/aggregator/classes/IntegrateContentToNewsEngine.php',
-	'Aggregator\AggregatorEngine'             => 'system/modules/aggregator/classes/AggregatorEngine.php',
+
+	// Elements
+	'Aggregator\ContentAggregator'            => 'system/modules/aggregator/elements/ContentAggregator.php',
 
 	// Hooks
 	'NewsListAggregatorHook'                  => 'system/modules/aggregator/hooks/NewsListAggregatorHook.php',
 
-	// Elements
-	'Aggregator\ContentAggregator'            => 'system/modules/aggregator/elements/ContentAggregator.php',
+	// Modules
+	'ModuleNewsListAggregator'                => 'system/modules/aggregator/modules/ModuleNewsListAggregator.php',
 ));
 
 

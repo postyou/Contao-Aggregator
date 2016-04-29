@@ -20,7 +20,7 @@ class tl_news_aggregator extends \tl_news {
 
 	public function hideFacebookNewsOperations($row, $href, $label, $title, $icon, $attributes) {
 		if (strpos($row['alias'], 'facebook-post') !== false) {
-			$icon = '';
+			return ' ';
 		}
 		return ($this->User->isAdmin || !$row['admin']) ? '<a href="'.$this->addToUrl($href.'&amp;id='.$row['id']).'" title="'.specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ' : Image::getHtml(preg_replace('/\.gif$/i', '_.gif', $icon)).' ';
 	}
