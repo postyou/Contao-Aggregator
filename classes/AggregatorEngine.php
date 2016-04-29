@@ -439,6 +439,7 @@ class AggregatorEngine extends \Backend{
 								$cacheLibrary[$count]['item']['type'] = $item['type'];
 								$cacheLibrary[$count]['timestamp'] = strtotime($item['created_time']);
 								$cacheLibrary[$count]['plattform'] = 'facebook';
+								$cacheLibrary[$count]['id'] = $id[1];
 								$count++;
 							}
 						}

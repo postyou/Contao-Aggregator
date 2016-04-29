@@ -15,6 +15,7 @@
 ClassLoader::addNamespaces(array
 (
 	'Aggregator',
+	'aggregator',
 ));
 
 
@@ -24,11 +25,15 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
-	'Aggregator\TwitterAPIExchange' => 'system/modules/aggregator/classes/TwitterAPIExchange.php',
-	'Aggregator\AggregatorEngine'   => 'system/modules/aggregator/classes/AggregatorEngine.php',
+	'Aggregator\TwitterAPIExchange'           => 'system/modules/aggregator/classes/TwitterAPIExchange.php',
+	'aggregator\IntegrateContentToNewsEngine' => 'system/modules/aggregator/classes/IntegrateContentToNewsEngine.php',
+	'Aggregator\AggregatorEngine'             => 'system/modules/aggregator/classes/AggregatorEngine.php',
+
+	// Hooks
+	'NewsListAggregatorHook'                  => 'system/modules/aggregator/hooks/NewsListAggregatorHook.php',
 
 	// Elements
-	'Aggregator\ContentAggregator'  => 'system/modules/aggregator/elements/ContentAggregator.php',
+	'Aggregator\ContentAggregator'            => 'system/modules/aggregator/elements/ContentAggregator.php',
 ));
 
 

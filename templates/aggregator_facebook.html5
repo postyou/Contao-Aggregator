@@ -1,22 +1,16 @@
 <div class="layout_facebook block<?php echo $this->class; ?>">
-    <a rel="author" target="_blank" href="<?php echo $this->authorLink; ?>">
-        <img src="<?php echo $this->authorPicture; ?>" alt="<?php echo $this->authorName; ?>" title="<?php echo $this->authorName; ?>" />
+	<a rel="author" target="_blank" href="<?php echo $this->authorLink; ?>">
+    	<img src="<?php echo $this->authorPicture; ?>" alt="<?php echo $this->authorName; ?>" title="<?php echo $this->authorName; ?>" />
         <span class="author"><?php echo $this->authorName; ?></span>
     </a>
-    <time datetime="<?php echo $this->datetime; ?>"><?php echo $this->date; ?></time>
+	<time datetime="<?php echo $this->datetime; ?>"><?php echo $this->date; ?></time>
     <?php if($this->teaser): ?>
     <p class="teaser"><?php echo $this->teaser; ?></p>
     <?php endif; ?>
     <?php if($this->hasImage): ?>
     <figure class="image_container">
-        <?php if ($this->type == "video"): ?>
-            <a href="<?php echo $this->link; ?>" class="video-thumb">
-              <img src="<?php echo $this->imgUrl; ?>" alt="<?php echo $this->imgAlt; ?>" title="<?php echo $this->imgAlt; ?>">
-            </a>
-        <?php else: ?>
-            <img src="<?php echo $this->imgUrl; ?>" alt="<?php echo $this->imgAlt; ?>" title="<?php echo $this->imgAlt; ?>">
-        <?php endif; ?>
-    </figure>
+		<img src="<?php echo $this->imgUrl; ?>" alt="<?php echo $this->imgAlt; ?>" title="<?php echo $this->imgAlt; ?>">
+	</figure>
     <?php endif; ?>
     <p class="more"><?php echo $this->more; ?></p>
     <?php if($this->actions): ?>

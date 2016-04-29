@@ -74,15 +74,21 @@ $GLOBALS['TL_DCA']['tl_aggregator'] = array(
 		)
 	),
 	'palettes' => array(
-		'__selector__'  		=> array('type'),
+		'__selector__'  		=> array('type', 'addToNewsModul'),
 		'default'       		=> '{title_legend},title,type;',
-		'facebookUser'			=> '{title_legend},title,type;{source_legend},facebookUser,cache,badwords,published',
-		'twitterUser'			=> '{title_legend},title,type;{source_legend},twitterUser,cache,badwords,published',
-		'twitterHashtag'		=> '{title_legend},title,type;{source_legend},twitterHashtag,cache,badwords,published',
-		'instagramUser'			=> '{title_legend},title,type;{source_legend},instagramUser,cache,badwords,published',
-		'instagramHashtag'		=> '{title_legend},title,type;{source_legend},instagramHashtag,cache,badwords,published'
+		'facebookUser'			=> '{title_legend},title,type;{source_legend},facebookUser,cache,badwords,published,addToNewsModul',
+		'twitterUser'			=> '{title_legend},title,type;{source_legend},twitterUser,cache,badwords,published,addToNewsModul',
+		'twitterHashtag'		=> '{title_legend},title,type;{source_legend},twitterHashtag,cache,badwords,published,addToNewsModul',
+		'instagramUser'			=> '{title_legend},title,type;{source_legend},instagramUser,cache,badwords,published,addToNewsModul',
+		'instagramHashtag'		=> '{title_legend},title,type;{source_legend},instagramHashtag,cache,badwords,published,addToNewsModul'
 	),
 	
+	// Subpalettes
+	'subpalettes' => array
+	(
+		'addToNewsModul' => 'infoText, selectNewsArchive'
+	),
+
 	'fields'   => array(
 		'id'     => array(
 			'sql' => "int(10) unsigned NOT NULL auto_increment"
@@ -215,9 +221,38 @@ $GLOBALS['TL_DCA']['tl_aggregator'] = array(
     		'filter'              => true,
     		'inputType'           => 'checkbox',
 			'eval'      => array(
-								'tl_class'    => 'w50 m12',
+								'tl_class'    => 'm12',
  							),
     		'sql'                 => "char(1) NOT NULL default ''"
+		),
+		'addToNewsModul' => array(
+			'label'				=> &$GLOBALS['TL_LANG']['tl_aggregator']['addToNewsModul'],
+			'exclude'			=> true,
+			'inputType'			=> 'checkbox',
+			'eval'				=> array('tl_class' => '', 'submitOnChange' => true),
+    		'sql'				=> "char(1) NOT NULL default '1'"
+		),
+
+		'infoText' => array(
+			'input_field_callback' => array('tl_aggregator', 'addInfoText')
+		),
+
+		'selectNewsArchive' => array(
+			'label'				=> &$GLOBALS['TL_LANG']['tl_aggregator']['selectNewsArchive'],
+			'exclude'			=> true,
+			'inputType'			=> 'checkbox',
+			'foreignKey'		=> 'tl_news_archive.title',
+			'eval'				=> array('tl_class' => '', 'mandatory' => true, 'multiple' => true),
+			'sql'				=> "BLOB NULL",
+    		'relation'			=> array('type' => 'hasMany', 'load' => 'lazy')
 		)
 	)
 );
+
+class tl_aggregator extends Backend {
+
+	public function addInfoText() {
+		return '<div style=\'margin-top: 16px;\'><strong>'.$GLOBALS['TL_LANG']['tl_aggregator']['infoText'][0].' </strong><br>'.$GLOBALS['TL_LANG']['tl_aggregator']['infoText'][1].'</div>';
+	}
+
+}
