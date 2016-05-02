@@ -28,7 +28,7 @@ $GLOBALS['BE_MOD']['content']['aggregator'] = array(
   * Register Cronjob
   */
 $GLOBALS['TL_CRON']['minutely'][] = array('AggregatorEngine', 'checkForAggregatorUpdates');
-$GLOBALS['TL_CRON']['minutely'][] = array('IntegrateContentToNewsEngine', 'insertCacheDataToNewsDB');
+$GLOBALS['TL_CRON']['hourly'][] = array('IntegrateContentToNewsEngine', 'insertCacheDataToNewsDB');
 
 
 if(TL_MODE == 'BE')
