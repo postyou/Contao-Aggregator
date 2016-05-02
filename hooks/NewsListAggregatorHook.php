@@ -8,6 +8,8 @@ class NewsListAggregatorHook {
 			$objTemplate->picture = array('img'=>array('src'=> $arrRow['imageUrl'], 'srcset'=>''), 'sources'=>array());
 			$objTemplate->addImage = $arrRow['addImage'];
 			$objTemplate->class .= ' facebook';
+			$objTemplate->href = $arrRow['url'];
+			$objTemplate->link = $arrRow['url'];
 		} else {
 			$objTemplate->class .= ' news';
 		}
