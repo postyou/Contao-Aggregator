@@ -14,5 +14,13 @@ class NewsListAggregatorHook {
 
 	}
 
-	
+	public function filterFacebookPosts($newsArchives, $blnFeatured, $limit, $offset, $thisModule) {
+		$filteredNews = array();
+		if ($thisModule->hideFacebookNews) {
+			$objArchive = \NewsModel::findBy(array('pid IN ('.implode(',', deserialize($newsArchives)).') AND published = 1 AND alias NOT LIKE "facebook-post%" ORDER BY time desc LIMIT '.$limit), null);
+			return $objArchive;
+		}
+
+		return $newsArchives;
+	}
 }
