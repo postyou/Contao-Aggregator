@@ -424,7 +424,7 @@ class AggregatorEngine extends \Backend{
 							if($this->checkForBadwords($badwords, $item['message']))
 							{
 								$cacheLibrary[$count]['author']['name'] = $item['from']['name'];
-								$cacheLibrary[$count]['author']['picture'] = 'https://graph.facebook.com/v2.5/'.$item['from']['id'].'/picture?type=square';
+								$cacheLibrary[$count]['author']['picture'] = 'https://graph.facebook.com/v2.6/'.$item['from']['id'].'/picture?type=square';
 								$cacheLibrary[$count]['author']['url'] = 'https://www.facebook.com/'.$item['from']['id'];
 								if(strlen($item['message']) > 160){
 									$cacheLibrary[$count]['item']['message'] = substr($item['message'], 0, 160).'...';
@@ -435,7 +435,8 @@ class AggregatorEngine extends \Backend{
                                 $cacheLibrary[$count]['item']['picture'] = $item['full_picture'];
                                 $cacheLibrary[$count]['item']['link'] = $item['link'];
 								$id = explode('_', $item['id']);
-								$cacheLibrary[$count]['item']['url'] = 'https://www.facebook.com/'.$id[0].'/posts/'.$id[1];
+								// $cacheLibrary[$count]['item']['url'] = 'https://www.facebook.com/'.$id[0].'/posts/'.$id[1];
+								$cacheLibrary[$count]['item']['url'] = $item['link'];
 								$cacheLibrary[$count]['item']['type'] = $item['type'];
 								$cacheLibrary[$count]['timestamp'] = strtotime($item['created_time']);
 								$cacheLibrary[$count]['plattform'] = 'facebook';
