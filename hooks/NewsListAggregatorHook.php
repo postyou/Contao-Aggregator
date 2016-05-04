@@ -10,6 +10,7 @@ class NewsListAggregatorHook {
 			$objTemplate->class .= ' facebook';
 			$objTemplate->href = $arrRow['url'];
 			$objTemplate->link = $arrRow['url'];
+			$objTemplate->attributes .= 'target="_blank"';
 		} else {
 			$objTemplate->class .= ' news';
 		}
