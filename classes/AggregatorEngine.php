@@ -309,7 +309,7 @@ class AggregatorEngine extends \Backend{
 							
 							if (isset($GLOBALS['TL_CONFIG']['aggregator_facebook_app_id']) && $GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'] != '' && isset($GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']) && $GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret'] != '')
 							{
-								$data = $this->fetchUrl('https://graph.facebook.com/v2.5/'.urlencode($allActiveJobs->facebookUser).'/posts/?fields=from,message,full_picture,link,type,created_time&access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
+								$data = $this->fetchUrl('https://graph.facebook.com/v2.6/'.urlencode($allActiveJobs->facebookUser).'/posts/?fields=story,from,message,full_picture,link,type,created_time&access_token='.$GLOBALS['TL_CONFIG']['aggregator_facebook_app_id'].'|'.$GLOBALS['TL_CONFIG']['aggregator_faceboook_app_secret']);
 								if ($data['error']['code'] == 4)
 								{
 									$facebookApi = false;
@@ -435,8 +435,11 @@ class AggregatorEngine extends \Backend{
                                 $cacheLibrary[$count]['item']['picture'] = $item['full_picture'];
                                 $cacheLibrary[$count]['item']['link'] = $item['link'];
 								$id = explode('_', $item['id']);
-								// $cacheLibrary[$count]['item']['url'] = 'https://www.facebook.com/'.$id[0].'/posts/'.$id[1];
-								$cacheLibrary[$count]['item']['url'] = $item['link'];
+								if (strpos($item['story'], 'new photos') === false) {
+									$cacheLibrary[$count]['item']['url'] = 'https://www.facebook.com/'.$id[0].'/posts/'.$id[1];
+								} else {
+									$cacheLibrary[$count]['item']['url'] = $item['link'];
+								}
 								$cacheLibrary[$count]['item']['type'] = $item['type'];
 								$cacheLibrary[$count]['timestamp'] = strtotime($item['created_time']);
 								$cacheLibrary[$count]['plattform'] = 'facebook';
