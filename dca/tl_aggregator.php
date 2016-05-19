@@ -243,7 +243,7 @@ $GLOBALS['TL_DCA']['tl_aggregator'] = array(
 			'inputType'			=> 'checkbox',
 			'foreignKey'		=> 'tl_news_archive.title',
 			'eval'				=> array('tl_class' => '', 'mandatory' => true, 'multiple' => true),
-			'sql'				=> "BLOB NULL",
+			'sql'				=> "blob NULL",
     		'relation'			=> array('type' => 'hasMany', 'load' => 'lazy')
 		)
 	)

@@ -264,11 +264,11 @@ class AggregatorEngine extends \Backend{
 		{
 			$plattform = str_replace(array('User', 'Hashtag'), '', $allActiveJobs->type);
 			
-			if(isset($GLOBALS['TL_CONFIG']['aggregator_'.$plattform.'_cache']))
+			if (isset($GLOBALS['TL_CONFIG']['aggregator_'.$plattform.'_cache']))
 			{
 				$duration = $GLOBALS['TL_CONFIG']['aggregator_'.$plattform.'_cache'];
 				
-				if($allActiveJobs->cache != 0)
+				if ($allActiveJobs->cache != 0)
 				{
 					$duration = $allActiveJobs->cache;
 				}
