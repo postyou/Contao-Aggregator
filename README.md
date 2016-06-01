@@ -1,3 +1,24 @@
+Install
+==========
+usage:
+
+"require": {
+
+        "terhuerne/aggregator": "dev-master"
+},
+
+
+"repositories": [
+
+    {
+        "type": "vcs",
+        "url": "https://github.com/postyou/Contao-Aggregator"
+    }
+        
+]
+
+
+
 Contao-Aggregator
 ==========
 
