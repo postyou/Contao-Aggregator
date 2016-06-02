@@ -131,7 +131,11 @@ class ContentAggregator extends \ContentElement
 			$objTemplate->class = $strClass;
 			$objTemplate->date = \Date::parse($objPage->datimFormat, $arrItem['timestamp']);
 			$objTemplate->datetime = $objTemplate->datetime = date('Y-m-d\TH:i:sP', $arrItem['timestamp']);
-			$objTemplate->teaser = $arrItem['item']['message'];
+			if ($this->messageLength === '*') {
+				$objTemplate->message = $arrItem['item']['message'];
+			} else {
+				$objTemplate->message = substr($arrItem['item']['message'], 0, intval($this->messageLength)).'...';
+			}
 			$objTemplate->hasImage = $arrItem['item']['picture'] ? true : false;
 			$objTemplate->imgUrl = $arrItem['item']['picture'];
 			$objTemplate->imgAlt = substr($arrItem['item']['message'], 0, 24);

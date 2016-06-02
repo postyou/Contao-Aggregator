@@ -426,11 +426,7 @@ class AggregatorEngine extends \Backend{
 								$cacheLibrary[$count]['author']['name'] = $item['from']['name'];
 								$cacheLibrary[$count]['author']['picture'] = 'https://graph.facebook.com/v2.6/'.$item['from']['id'].'/picture?type=square';
 								$cacheLibrary[$count]['author']['url'] = 'https://www.facebook.com/'.$item['from']['id'];
-								if(strlen($item['message']) > 160){
-									$cacheLibrary[$count]['item']['message'] = substr($item['message'], 0, 160).'...';
-								}else{
-									$cacheLibrary[$count]['item']['message'] = $item['message'];
-								}
+								$cacheLibrary[$count]['item']['message'] = $item['message'];
                                 $cacheLibrary[$count]['link'] = $item['link'];
                                 $cacheLibrary[$count]['item']['picture'] = $item['full_picture'];
                                 $cacheLibrary[$count]['item']['link'] = $item['link'];

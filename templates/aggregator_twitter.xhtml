@@ -4,8 +4,8 @@
         <span class="author"><?php echo $this->authorName; ?></span>
     </a>
 	<abbr class="time" title="<?php echo $this->datetime; ?>"><?php echo $this->date; ?></abbr>
-    <?php if($this->teaser): ?>
-    <p class="teaser"><?php echo $this->teaser; ?></p>
+    <?php if($this->message): ?>
+    <p class="message"><?php echo $this->message; ?></p>
     <?php endif; ?>
     <p class="more"><?php echo $this->more; ?></p>
     <?php if($this->actions): ?>
