@@ -25,3 +25,4 @@ $GLOBALS['TL_LANG']['ERR']['aliasDoesNotExist'] = 'This Page-Alias does not exis
 $GLOBALS['TL_LANG']['ERR']['wrongFacebookCredentials'] = 'Your Facebook-API credentials are wrong.';
 $GLOBALS['TL_LANG']['ERR']['noFacebookCredentials'] = 'Please enter your Facebook-API credentials in the following section: System > Settings.';
 $GLOBALS['TL_LANG']['ERR']['maximumRate'] ='Maximum Request Rate reached. API-Calls will be blocked until a new timeframe is reached.';
+$GLOBALS['TL_LANG']['MSC']['readMoreLinkText'] = 'Read more on facebook...';

@@ -139,7 +139,7 @@ class ContentAggregator extends \ContentElement
 			$objTemplate->hasImage = $arrItem['item']['picture'] ? true : false;
 			$objTemplate->imgUrl = $arrItem['item']['picture'];
 			$objTemplate->imgAlt = substr($arrItem['item']['message'], 0, 24);
-			$objTemplate->more = sprintf('<a href="%s" target="_blank" title="%s">%s</a>', $arrItem['item']['url'], specialchars(sprintf($GLOBALS['TL_LANG']['MSC']['readMore'], substr($arrItem['item']['message'], 0, 12)), true), $GLOBALS['TL_LANG']['MSC']['more']);
+			$objTemplate->more = sprintf('<a href="%s" target="_blank" title="%s">%s</a>', $arrItem['item']['url'], specialchars(sprintf($GLOBALS['TL_LANG']['MSC']['readMore'], substr($arrItem['item']['message'], 0, 12)), true), $GLOBALS['TL_LANG']['MSC']['readMoreLinkText']);
 			$objTemplate->link = $arrItem['item']['url'];
 			$objTemplate->type = $arrItem['item']['type'];
 			$objTemplate->mediaLink = $arrItem['item']['link'];

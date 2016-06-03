@@ -25,3 +25,4 @@ $GLOBALS['TL_LANG']['ERR']['aliasDoesNotExist'] = 'Der von Ihnen eingegebene Sei
 $GLOBALS['TL_LANG']['ERR']['wrongFacebookCredentials'] = 'Die von Ihnen eingegebenen Facebook-API Daten sind fehlerhaft.';
 $GLOBALS['TL_LANG']['ERR']['noFacebookCredentials'] = 'Bitte geben Sie Ihre Daten für die Facebook-API im Bereich System > Einstellungen ein.';
 $GLOBALS['TL_LANG']['ERR']['maximumRate'] ='Der Zugriff auf die API wurde gesperrt, da zu viele Anfragen gesendet worden sind.';
+$GLOBALS['TL_LANG']['MSC']['readMoreLinkText'] = 'Auf Facebook Weiterlesen...';
