@@ -38,8 +38,8 @@
 									$imageUrl = $entry->item->picture;
 								}
 
-								$teaser = '<p>'.$entry->item->message.'</p><a href="'.$entry->item->url.'" title="'.$shortText.'" target="_blank" class="external-link'.$videoClass.'"></a>';
-								$shortText = \StringUtil::substr($teaser, 50);
+								$teaser = '<p>'.$entry->item->message.'</p><a href="'.$entry->item->url.'" title="zum Newseintrag" target="_blank" class="external-link'.$videoClass.'"></a>';
+								$shortText = \String::substr($teaser, 50);
 
 								$author = $this->Database->query('SELECT id FROM tl_user WHERE admin = 1 LIMIT 1');
 
