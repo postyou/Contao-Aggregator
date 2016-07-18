@@ -25,18 +25,17 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
-	'Aggregator\AggregatorEngine'             => 'system/modules/aggregator/classes/AggregatorEngine.php',
 	'Aggregator\TwitterAPIExchange'           => 'system/modules/aggregator/classes/TwitterAPIExchange.php',
 	'aggregator\IntegrateContentToNewsEngine' => 'system/modules/aggregator/classes/IntegrateContentToNewsEngine.php',
-
-	// Elements
-	'Aggregator\ContentAggregator'            => 'system/modules/aggregator/elements/ContentAggregator.php',
+	'Aggregator\AggregatorEngine'             => 'system/modules/aggregator/classes/AggregatorEngine.php',
+	'Aggregator\NewsModelAggregator'          => 'system/modules/aggregator/classes/NewsModelAggregator.php',
+	'Aggregator\ModuleNewsListAggregator'     => 'system/modules/aggregator/classes/ModuleNewsListAggregator.php',
 
 	// Hooks
 	'NewsListAggregatorHook'                  => 'system/modules/aggregator/hooks/NewsListAggregatorHook.php',
 
-	// Modules
-	'ModuleNewsListAggregator'                => 'system/modules/aggregator/modules/ModuleNewsListAggregator.php',
+	// Elements
+	'Aggregator\ContentAggregator'            => 'system/modules/aggregator/elements/ContentAggregator.php',
 ));
 
 
@@ -45,8 +44,10 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
+	'news_aggregator'      => 'system/modules/aggregator/templates',
 	'aggregator_facebook'  => 'system/modules/aggregator/templates',
 	'aggregator_instagram' => 'system/modules/aggregator/templates',
+	'news_latest'          => 'system/modules/aggregator/templates',
 	'aggregator_twitter'   => 'system/modules/aggregator/templates',
 	'ce_aggregator'        => 'system/modules/aggregator/templates',
 ));

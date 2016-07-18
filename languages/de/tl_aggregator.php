@@ -57,4 +57,6 @@ $GLOBALS['TL_LANG']['tl_aggregator']['addToNewsModul'][1] = 'Die Inhalte werden 
 $GLOBALS['TL_LANG']['tl_aggregator']['selectNewsArchive'][0] = 'News Archiv(e)';
 $GLOBALS['TL_LANG']['tl_aggregator']['selectNewsArchive'][1] = 'Wählen Sie ein oder mehrere Newsarchive aus, in welche die Inhalte integriert werden.';
 $GLOBALS['TL_LANG']['tl_aggregator']['infoText'][0] = "Hinweis:";
-$GLOBALS['TL_LANG']['tl_aggregator']['infoText'][1] = "Die Inhalte werden in das Nachrichten Modul importiert und automatisch stündlich synchronisiert. Neue veröffentlichte Einträge im jeweiligen Dienst (z.B. Facebook) werden hinzugefügt, bearbeitete aktualisiert. Wird ein veröffentlichter Eintrag gelöscht, so wird er auch aus dem Nachrichten Modul entfernt.";
+$GLOBALS['TL_LANG']['tl_aggregator']['infoText'][1] = "Die Inhalte werden in das Nachrichten Modul importiert und automatisch stündlich synchronisiert. Neue Einträge im jeweiligen Dienst (z.B. Facebook) werden hinzugefügt, Veränderungen werden übernommen (gilt auch für das Löschen).";
+$GLOBALS['TL_LANG']['tl_aggregator']['text_only_mode'][0]="Nur Text darstellen.";
+$GLOBALS['TL_LANG']['tl_aggregator']['text_only_mode'][1]="Ist dieser Haken gesetzt, werden die Bilder aus der Quelle nicht mit dargestellt.";

@@ -2,6 +2,30 @@
 
 $GLOBALS['TL_DCA']['tl_news']['config']['onload_callback'][] = array('tl_news_aggregator', 'loadParentChildRecordCallback');
 
+$GLOBALS['TL_DCA']['tl_news']['fields']['plattform'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_news']['plattform'],
+	'inputType'               => 'text',
+	'eval'                    => array('tl_class'=>'w50',"disabled"=>true),
+	'sql'                     => "varchar(64) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_news']['fields']['type'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_news']['type'],
+	'inputType'               => 'text',
+	'eval'                    => array('tl_class'=>'w50',"disabled"=>true),
+	'sql'                     => "varchar(64) NOT NULL default ''"
+);
+$GLOBALS['TL_DCA']['tl_news']['fields']['link'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['link'],
+	'inputType'               => 'text',
+	'eval'                    => array("disabled"=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50 wizard'),
+	'sql'                     => "varchar(255)"
+);
+
+
 
 class tl_news_aggregator extends \tl_news {
 

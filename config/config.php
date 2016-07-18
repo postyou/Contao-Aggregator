@@ -16,8 +16,11 @@
  */
 $GLOBALS['BE_MOD']['content']['aggregator'] = array(
 	'tables' => array('tl_aggregator'),
-	'icon'   => 'system/modules/aggregator/assets/icon.gif'
+	'icon'   => 'system/modules/aggregator/assets/icon.gif',
+    'sync'   => array('aggregator\IntegrateContentToNewsEngine","manuelUpdate')
 );
+
+$GLOBALS['FE_MOD']['news']['newslist'] = 'Aggregator\ModuleNewsListAggregator';
 
 /**
  * Content elements
@@ -27,7 +30,7 @@ $GLOBALS['BE_MOD']['content']['aggregator'] = array(
  /**
   * Register Cronjob
   */
-$GLOBALS['TL_CRON']['minutely'][] = array('AggregatorEngine', 'checkForAggregatorUpdates');
+$GLOBALS['TL_CRON']['hourly'][] = array('AggregatorEngine', 'checkForAggregatorUpdates');
 $GLOBALS['TL_CRON']['hourly'][] = array('IntegrateContentToNewsEngine', 'insertCacheDataToNewsDB');
 
 

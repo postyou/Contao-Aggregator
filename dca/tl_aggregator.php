@@ -59,28 +59,33 @@ $GLOBALS['TL_DCA']['tl_aggregator'] = array(
 				'icon'       => 'delete.gif',
 				'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
 			),
-			'show'   => array(
-				'label'      => &$GLOBALS['TL_LANG']['tl_aggregator']['show'],
-				'href'       => 'act=show',
-				'icon'       => 'show.gif',
-				'attributes' => 'style="margin-right:3px"'
-			),
+            'sync'	=> array(
+                'label'               => &$GLOBALS['TL_LANG']['tl_aggregator']['sync'],
+                'icon'                => '/system/modules/aggregator/assets/img/sync.png',
+                'href'          	  => 'key=sync',
+            ),
 			'toggle'	=> array(
 				'label'               => &$GLOBALS['TL_LANG']['tl_aggregator']['toggle'],
     			'icon'                => 'visible.gif',
     			'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
     			'button_callback'     => array('AggregatorEngine', 'toggleIcon')
 			),
+            'show'   => array(
+                'label'      => &$GLOBALS['TL_LANG']['tl_aggregator']['show'],
+                'href'       => 'act=show',
+                'icon'       => 'show.gif',
+                'attributes' => 'style="margin-right:3px"'
+            ),
 		)
 	),
 	'palettes' => array(
 		'__selector__'  		=> array('type', 'addToNewsModul'),
 		'default'       		=> '{title_legend},title,type;',
-		'facebookUser'			=> '{title_legend},title,type;{source_legend},facebookUser,cache,badwords,published,addToNewsModul',
-		'twitterUser'			=> '{title_legend},title,type;{source_legend},twitterUser,cache,badwords,published,addToNewsModul',
-		'twitterHashtag'		=> '{title_legend},title,type;{source_legend},twitterHashtag,cache,badwords,published,addToNewsModul',
-		'instagramUser'			=> '{title_legend},title,type;{source_legend},instagramUser,cache,badwords,published,addToNewsModul',
-		'instagramHashtag'		=> '{title_legend},title,type;{source_legend},instagramHashtag,cache,badwords,published,addToNewsModul'
+		'facebookUser'			=> '{title_legend},title,type;{source_legend},facebookUser,cache,badwords,published,text_only_mode,addToNewsModul',
+		'twitterUser'			=> '{title_legend},title,type;{source_legend},twitterUser,cache,badwords,published,text_only_mode,addToNewsModul',
+		'twitterHashtag'		=> '{title_legend},title,type;{source_legend},twitterHashtag,cache,badwords,published,text_only_mode,addToNewsModul',
+		'instagramUser'			=> '{title_legend},title,type;{source_legend},instagramUser,cache,badwords,published,text_only_mode,addToNewsModul',
+		'instagramHashtag'		=> '{title_legend},title,type;{source_legend},instagramHashtag,cache,badwords,published,text_only_mode,addToNewsModul'
 	),
 	
 	// Subpalettes
@@ -236,7 +241,6 @@ $GLOBALS['TL_DCA']['tl_aggregator'] = array(
 		'infoText' => array(
 			'input_field_callback' => array('tl_aggregator', 'addInfoText')
 		),
-
 		'selectNewsArchive' => array(
 			'label'				=> &$GLOBALS['TL_LANG']['tl_aggregator']['selectNewsArchive'],
 			'exclude'			=> true,
@@ -245,7 +249,7 @@ $GLOBALS['TL_DCA']['tl_aggregator'] = array(
 			'eval'				=> array('tl_class' => '', 'mandatory' => true, 'multiple' => true),
 			'sql'				=> "blob NULL",
     		'relation'			=> array('type' => 'hasMany', 'load' => 'lazy')
-		)
+		),
 	)
 );
 
