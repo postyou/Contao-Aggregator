@@ -29,7 +29,6 @@ class NewsListAggregatorHook {
 				$objTemplate->addImage = $arrRow['addImage'];
 				$objTemplate->class .= " ".$arrRow['plattform'];
 				$objTemplate->href = $arrRow['url'];
-//				$objTemplate->link = $arrRow['url'];
 				$objTemplate->attributes .= 'target="_blank"';
 			} else {
 				$objTemplate->class .= ' news';
@@ -55,7 +54,7 @@ class NewsListAggregatorHook {
     }
     
 	public  function renderLinkContent($url,$textOnlyModeOn,$plattform,$type,$imageUrl){
-        if(isset($url) && !empty($url)){
+        if(isset($url) && !empty($url) && $tpye=="link"){
             if($textOnlyModeOn)
                 return $this->renderLinkSimple($url);
             else{
@@ -85,8 +84,8 @@ class NewsListAggregatorHook {
         $str=$parse["host"];
         $tmp = @file_get_contents($url);
         if(isset($tmp) && !empty($tmp)){
-            $str = trim(preg_replace('/\s+/', ' ', $str)); // supports line breaks inside <title>
-            preg_match("/\<title\>(.*)\<\/title\>/i",$str,$title); // ignore case
+            $tmp = trim(preg_replace('/\s+/', ' ', $tmp)); // supports line breaks inside <title>
+            preg_match("/\<title\>(.*)\<\/title\>/i",$tmp,$title); // ignore case
             $str= $title[1];
         }
         return $str;
