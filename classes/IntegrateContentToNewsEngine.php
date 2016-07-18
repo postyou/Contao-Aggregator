@@ -168,7 +168,7 @@ class IntegrateContentToNewsEngine extends \AggregatorEngine
         if(isset($textStr) && !empty($textStr)) {
             $retnArr = preg_split("/(?<=[.:!?] )/", $textStr,2,PREG_SPLIT_NO_EMPTY);
             if(strlen($retnArr[0])>$stringMaxcount){
-                $newHead=String::substr($retnArr[0],$stringMaxcount,false);
+                $newHead=\StringUtil::substr($retnArr[0],$stringMaxcount,false);
                 $add=substr($retnArr[0],strlen($newHead));
                 $retnArr[1]= $add.$retnArr[1];
                 $retnArr[0]=$newHead;
