@@ -17,7 +17,7 @@
 $GLOBALS['BE_MOD']['content']['aggregator'] = array(
 	'tables' => array('tl_aggregator'),
 	'icon'   => 'system/modules/aggregator/assets/icon.gif',
-    'sync'   => array('aggregator\IntegrateContentToNewsEngine","manuelUpdate')
+    'sync'   => array('aggregator\IntegrateContentToNewsEngine','manuelUpdate')
 );
 
 $GLOBALS['FE_MOD']['news']['newslist'] = 'Aggregator\ModuleNewsListAggregator';
