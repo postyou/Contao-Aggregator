@@ -2,20 +2,24 @@
 
 $GLOBALS['TL_DCA']['tl_news']['config']['onload_callback'][] = array('tl_news_aggregator', 'loadParentChildRecordCallback');
 
+
+
 $GLOBALS['TL_DCA']['tl_news']['fields']['plattform'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_news']['plattform'],
+    'default'                 => "contao",
 	'inputType'               => 'text',
-	'eval'                    => array('tl_class'=>'w50',"disabled"=>true),
-	'sql'                     => "varchar(64) NOT NULL default ''"
+	'eval'                    => array('tl_class'=>'w50',"doNotSaveEmpty"=>true,"disabled"=>true),
+	'sql'                     => "varchar(64) NOT NULL default 'contao'"
 );
 
 $GLOBALS['TL_DCA']['tl_news']['fields']['type'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_news']['type'],
 	'inputType'               => 'text',
-	'eval'                    => array('tl_class'=>'w50',"disabled"=>true),
-	'sql'                     => "varchar(64) NOT NULL default ''"
+    'default'                 => "status",
+    'eval'                    => array('tl_class'=>'w50',"doNotSaveEmpty"=>true, "disabled"=>true),
+	'sql'                     => "varchar(64) NOT NULL default 'status'"
 );
 $GLOBALS['TL_DCA']['tl_news']['fields']['link'] = array
 (
