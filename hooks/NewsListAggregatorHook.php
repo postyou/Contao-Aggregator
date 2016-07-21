@@ -54,7 +54,7 @@ class NewsListAggregatorHook {
     }
     
 	public  function renderLinkContent($url,$textOnlyModeOn,$plattform,$type,$imageUrl){
-        if(isset($url) && !empty($url) && $tpye=="link"){
+        if(isset($url) && !empty($url) && $type=="link"){
             if($textOnlyModeOn)
                 return $this->renderLinkSimple($url);
             else{
