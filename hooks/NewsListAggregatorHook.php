@@ -2,19 +2,19 @@
 
 class NewsListAggregatorHook {
 
-	public function parseFacebookPosts($objTemplate, $arrRow, $objModule) {
-		
-		if($objModule instanceof \Contao\ModuleNews) {
+    public function parseFacebookPosts($objTemplate, $arrRow, $objModule) {
+        
+        if($objModule instanceof \Contao\ModuleNews) {
 
-			$objTemplate->type=$arrRow['type'];
-			$objTemplate->plattform=$arrRow['plattform'];
-			$objTemplate->text_only_mode=$objModule->text_only_mode==="1";
+            $objTemplate->type=$arrRow['type'];
+            $objTemplate->plattform=$arrRow['plattform'];
+            $objTemplate->text_only_mode=$objModule->text_only_mode==="1";
             $objTemplate->link=$arrRow['link'];
-			$objTemplate->link_text=
-				self::renderLinkContent($objTemplate->link,
-										$objTemplate->text_only_mode,
-										$objTemplate->plattform,
-										$objTemplate->type,
+            $objTemplate->link_text=
+                self::renderLinkContent($objTemplate->link,
+                                        $objTemplate->text_only_mode,
+                                        $objTemplate->plattform,
+                                        $objTemplate->type,
                                         $arrRow['imageUrl']
                 );
             if ($objModule->messageLength === '*' || empty($arrRow['teaser'])) {
@@ -23,56 +23,60 @@ class NewsListAggregatorHook {
                 $objTemplate->teaser = StringUtil::substrHtml($arrRow['teaser'], intval($objModule->messageLength.'...'));
             }
 
-			if (strpos($arrRow['alias'], 'facebook-post') !== false) {
-				$objTemplate->picture  =
-					array('img' => array('src' => $arrRow['imageUrl'], 'srcset' => ''), 'sources' => array());
-				$objTemplate->addImage = $arrRow['addImage'];
-				$objTemplate->class .= " ".$arrRow['plattform'];
-				$objTemplate->href = $arrRow['url'];
-				$objTemplate->attributes .= 'target="_blank"';
-			} else {
-				$objTemplate->class .= ' news';
-			}
+            if (strpos($arrRow['alias'], 'facebook-post') !== false) {
+                $objTemplate->picture  =
+                    array('img' => array('src' => $arrRow['imageUrl'], 'srcset' => ''), 'sources' => array());
+                $objTemplate->addImage = $arrRow['addImage'];
+                $objTemplate->class .= " ".$arrRow['plattform'];
+                $objTemplate->href = $arrRow['url'];
+                $objTemplate->attributes .= 'target="_blank"';
+            } else {
+                $objTemplate->class .= ' news';
+            }
 
-		}	
-	}
+        }   
+    }
 
-	public function filterFacebookPosts($newsArchives, $blnFeatured, $limit, $offset, $thisModule) {
-		$filteredNews = array();
-		if ($thisModule->hideFacebookNews) {
-			$objArchive = \NewsModel::findBy(array('pid IN ('.implode(',', deserialize($newsArchives)).') AND published = 1 AND alias NOT LIKE "facebook-post%" ORDER BY time desc LIMIT '.$limit), null);
-			return $objArchive;
-		}
+    public function filterFacebookPosts($newsArchives, $blnFeatured, $limit, $offset, $thisModule) {
+        $filteredNews = array();
+        if ($thisModule->hideFacebookNews) {
+            $objArchive = \NewsModel::findBy(array('pid IN ('.implode(',', deserialize($newsArchives)).') AND published = 1 AND alias NOT LIKE "facebook-post%" ORDER BY time desc LIMIT '.$limit), null);
+            return $objArchive;
+        }
 
-		return $newsArchives;
-	}
-	
+        return $newsArchives;
+    }
+    
     private  function renderLinkSimple($url,$title=""){
         if(empty($title))
             $title=$this->get_title($url);
         return "<a href='".$url."' target='_blank'>".$title."</a>";
     }
     
-	public  function renderLinkContent($url,$textOnlyModeOn,$plattform,$type,$imageUrl){
+    public  function renderLinkContent($url,$textOnlyModeOn,$plattform,$type,$imageUrl){
+
         if(isset($url) && !empty($url) && $type=="link"){
-            if($textOnlyModeOn)
+            if($textOnlyModeOn) {
                 return $this->renderLinkSimple($url);
+            }
             else{
                 return $this->renderSpecial($url, $plattform, $type, $imageUrl);
             }
         }
-		return "";
-		
-		
-	}
-	
-	public function renderSpecial($url,$plattform,$type,$imageUrl=null){
+        return "";
+        
+        
+    }
+    
+    public function renderSpecial($url,$plattform,$type,$imageUrl=null){
+
         $strBuffer="";
         $title=$this->get_title($url);
-        if(isset($imageUrl))
+        if(isset($imageUrl)) {
             $strBuffer= "<a href='".$url."' target='_blank'>".
-            \Contao\Image::getHtml($imageUrl,$title).
-            $title."</a>";
+            "<img src='".$imageUrl."' title='".$title."' />".
+            "</a>";
+        }
         else
             return $this->renderLinkSimple($url,$title);
         return $strBuffer;
