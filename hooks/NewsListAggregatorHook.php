@@ -20,7 +20,7 @@ class NewsListAggregatorHook {
             if ($objModule->messageLength === '*' || empty($arrRow['teaser'])) {
                 $objTemplate->teaser = $arrRow['teaser'];
             } else {
-                $objTemplate->teaser = substr($arrRow['teaser'], 0, intval($objModule->messageLength)).'...';
+                $objTemplate->teaser = StringUtil::substrHtml($arrRow['teaser'], intval($objModule->messageLength.'...'));
             }
 
 			if (strpos($arrRow['alias'], 'facebook-post') !== false) {
