@@ -3,7 +3,6 @@
 $GLOBALS['TL_DCA']['tl_news']['config']['onload_callback'][] = array('tl_news_aggregator', 'loadParentChildRecordCallback');
 
 
-
 $GLOBALS['TL_DCA']['tl_news']['fields']['plattform'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_news']['plattform'],
